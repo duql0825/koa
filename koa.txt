@@ -1,0 +1,34 @@
+-------------------------------------------------------
+database : db 주소
+-------------------------------------------------------
+module.exports = db를 사용해서 접근
+
+-------------------------------------------------------
+models : 테이블등록 
+-------------------------------------------------------
+- 가져오려면 require해서 변수에 저장
+ex) const Member = require("../models/Member");
+module.exports를 사용하기
+
+-------------------------------------------------------
+routes : 주소 가져오기
+-------------------------------------------------------
+ex) /api/login 
+	/restapi		
+router.	get	("/api/login", async (ctx) => { 
+  await Member.findOne({
+    where: {
+      id: ctx.params.id,
+    },
+  })
+    .then((task) => {
+      if (task) {
+        ctx.body = task;
+      } else {
+        ctx.body = "Task does not exist";
+      }
+    })
+    .catch((err) => {
+      ctx.body = "error" + err;
+    }); 
+});
