@@ -1,72 +1,76 @@
-import React, { Component } from "react";
-import { getList, addTodoList, deleteItem, updateItem } from "../ListFunction";
+import React, { Component } from 'react'
+import { getList, addTodoList, deleteItem, updateItem } from '../ListFunction'
 
 class List extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
-      id: "",
-      term: "",
+      id: '',
+      term: '',
       editDisabled: false,
-      items: [],
-    };
+      items: []
+    }
 
-    this.onSubmit = this.onSubmit.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
   componentDidMount() {
-    this.getAll();
+    this.getAll()
   }
 
   onChange = (event) => {
-    this.setState({ term: event.target.value, editDisabled: "disabled" });
-  };
+    this.setState({ term: event.target.value, editDisabled: 'disabled' })
+  }
 
+  // todolist 목록을 다시 불러온다.
   getAll = () => {
     getList().then((data) => {
       this.setState(
         {
-          term: "",
-          items: [...data],
+          term: '',
+          items: [...data]
         },
         () => {
-          console.log(this.state.items);
+          console.log(this.state.items)
         }
-      );
-    });
-  };
+      )
+    })
+  }
 
   onSubmit = (e) => {
-    e.preventDefault(); // preventDefault 기존의 이벤트를 종료한다. 새로고침 방지
+    e.preventDefault() // preventDefault 기존의 이벤트를 종료한다. 새로고침 방지
     addTodoList(this.state.term).then(() => {
-      this.getAll();
-    });
-    this.setState({ editDisabled: false });
-  };
+      // list 추가 후에 목록을 다시 불러옴
+      this.getAll()
+    })
+    this.setState({ editDisabled: false })
+  }
 
   onUpdate = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     updateItem(this.state.term, this.state.id).then(() => {
-      this.getAll();
-    });
-    this.setState({ editDisabled: false });
-  };
+      // 업데이트 후에 목록을 다시 불러옴
+      this.getAll()
+    })
+    this.setState({ editDisabled: false })
+  }
 
   onEdit = (item, itemid, e) => {
-    e.preventDefault();
+    e.preventDefault()
     this.setState({
       id: itemid,
-      term: item,
-    });
-  };
+      term: item
+    })
+  }
 
   onDelete = (val, e) => {
-    e.preventDefault();
+    e.preventDefault()
     deleteItem(val).then(() => {
-      this.getAll();
-    });
-  };
+      // 삭제 후에 목록을 다시 불러옴
+      this.getAll()
+    })
+  }
 
   render() {
     return (
@@ -80,7 +84,7 @@ class List extends Component {
                   type="text"
                   className="form-control"
                   id="InputEmail"
-                  value={this.state.term || ""}
+                  value={this.state.term || ''}
                   onChange={this.onChange.bind(this)}
                 />
               </div>
@@ -129,8 +133,8 @@ class List extends Component {
           </tbody>
         </table>
       </div>
-    );
+    )
   }
 }
 
-export default List;
+export default List
