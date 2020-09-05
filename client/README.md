@@ -1,68 +1,69 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1> TodoList </h1>  
 
-## Available Scripts
+> CRUD Todolist 
+> mysql 연동 phpMyAdmin
 
-In the project directory, you can run:
+<h2> How to run </h2>
 
-### `yarn start`
+### Installation  
+```
+$ npm install koa
+$ npm install --save axios
+```
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Getting started
+```  
+npm run dev
+```  
+concurrently를 사용해 react 서버와 express 서버를 동시에 실행시켜준다.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+# 설명
 
-### `yarn test`
+-------------------------------------------------------
+## 구성요소
+-------------------------------------------------------
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### Listfunction.js : axios rest
+> 함수로 만들어 쉽게 꺼낼수 있도록 처리  
+```
+export const addTodoList = (term) => {
+  return axios
+    .post(
+      "/api/task",
+      {
+        task_name: term,
+      },
+      {
+        headers: { "Content-Type": "application/json" },
+      }
+    )
+    .then((response) => {
+      console.log(response);
+    });
+};
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### components/List.js : CRUD 처리 
+- componentDidMount시 getAll 함수를 호출해서 todolist 목록 새로고침 
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Sequelize
+nodejs에서 mysql을 사용할때 미리 지정해줌으로써 좀더 편하게 다룰수 있는 라이브러리  
+위에서와 같이 module.exports를 사용해서 가져올 수 있다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### database : db 주소 
+> module.exports = db를 사용해서 접근  
+> table : nodejs_tasks   
+> column : id , tasks    
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### koa를 써보면서
+> request next를 쓰지 않고 async await ctx 차이점이 있었다.  
+> 좀 더 코드가 간단해지고 메모리를 많이 잡아먹지 않는다.  
+> 하지만 express와 비슷하게 쓰다보니 koa의 장점을 잘 못 살린거 같다.  
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 버그들  
+로그인 컴포넌트는 아직 완성되지 않았다.  
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## 참고 자료
+https://www.youtube.com/watch?v=NY7dYjwC_NI&t=1131s
