@@ -47,15 +47,15 @@ export const addTodoList = (term) => {
 ### components/List.js : CRUD 처리 
 - componentDidMount시 getAll 함수를 호출해서 todolist 목록 새로고침 
 
-
 ### Sequelize
 nodejs에서 mysql을 사용할때 미리 지정해줌으로써 좀더 편하게 다룰수 있는 라이브러리  
 위에서와 같이 module.exports를 사용해서 가져올 수 있다.
 
 ### database : db 주소 
-> module.exports = db를 사용해서 접근
-> table : nodejs_tasks 
-> column : id , tasks  
+> module.exports = db를 사용해서 접근  
+> table : nodejs_tasks   
+> column : id , tasks    
+
 
 ### koa를 써보면서
 > request next를 쓰지 않고 async await ctx 차이점이 있었다.  
