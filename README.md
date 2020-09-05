@@ -76,7 +76,7 @@ router.	get	("/api/login", async (ctx) => {
 ## 버그들
 Chat 기능에서 보내는 내용이 몇개씩 보내진다.  
 로그인이 아닌 랜덤유저를 생성해서 Chat한다.  
-<Login>은 아직 완성되지 않았다.  
+로그인 컴포넌트는 아직 완성되지 않았다.  
 
 ## 참고 자료
 https://www.youtube.com/watch?v=hiiaHyhhwBU&t=1366s  
