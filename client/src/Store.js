@@ -30,6 +30,7 @@ function sendChatAction(val) {
 }
 
 export default function Store(props) {
+  //reducer 사용 callback 대신 dispatch사용 가능하다.
   const [allChats, dispatch] = React.useReducer(reducer, initstate)
 
   const socket = io(':3001')
