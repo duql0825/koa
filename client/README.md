@@ -104,9 +104,3 @@ concurrently를 사용해 react 서버와 express 서버를 동시에 실행시�
 > request next를 쓰지 않고 async await ctx 차이점이 있었다.  
 > 좀 더 코드가 간단해지고 메모리를 많이 잡아먹지 않는다.  
 > 하지만 express와 비슷하게 쓰다보니 koa의 장점을 잘 못 살린거 같다.  
-
-## 버그들  
-로그인 컴포넌트는 아직 완성되지 않았다.  
-
-## 참고 자료
-https://www.youtube.com/watch?v=NY7dYjwC_NI&t=1131s
